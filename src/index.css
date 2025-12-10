@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Portfolio Dark Theme Colors */
+    --background: 225 15% 11%;
+    --foreground: 0 0% 88%;
+
+    --card: 225 15% 14%;
+    --card-foreground: 0 0% 88%;
+
+    --popover: 225 15% 14%;
+    --popover-foreground: 0 0% 88%;
+
+    --primary: 45 100% 60%;
+    --primary-foreground: 225 15% 11%;
+
+    --secondary: 225 15% 16%;
+    --secondary-foreground: 0 0% 75%;
+
+    --muted: 225 15% 16%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 45 100% 60%;
+    --accent-foreground: 225 15% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 225 15% 20%;
+    --input: 225 15% 16%;
+    --ring: 45 100% 60%;
+
+    --radius: 0.5rem;
+
+    /* Gradient definitions */
+    --gradient-primary: linear-gradient(135deg, hsl(45 100% 60%), hsl(35 100% 55%));
+    --gradient-card: linear-gradient(145deg, hsl(225 15% 14%), hsl(225 15% 16%));
+    
+    /* Shadows */
+    --shadow-card: 0 4px 15px -3px hsl(225 15% 8% / 0.4);
+    --shadow-glow: 0 0 20px hsl(45 100% 60% / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+}
