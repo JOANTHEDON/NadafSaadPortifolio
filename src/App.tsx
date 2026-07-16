@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Sidebar } from "./components/Sidebar";
 import { Navigation } from "./components/Navigation";
+import GlowCursorTrail from "./components/GlowCursorTrail";
+import CustomAimCursor from "./components/CustomAimCursor";
 import About from "./pages/About";
 import Resume from "./pages/Resume";
 import Portfolio from "./pages/Portfolio";
@@ -19,6 +21,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <GlowCursorTrail />
+      <CustomAimCursor />
       <BrowserRouter>
         <div className="min-h-screen bg-background text-foreground flex">
           <Sidebar />
