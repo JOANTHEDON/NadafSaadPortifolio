@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ModelShowroom3D from '@/components/ModelShowroom3D';
 
 // Import project images
 import fpsGameImg from '@/assets/fps-game.jpg';
@@ -128,7 +129,7 @@ const projects = [
 
 const Portfolio = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [activeTab, setActiveTab] = useState('projects'); // 'projects' or 'youtube'
+  const [activeTab, setActiveTab] = useState<'projects' | 'youtube' | '3d'>('projects'); // 'projects', 'youtube', or '3d'
   const categories = ['All', 'Unreal Engine', 'Unity', 'Android', 'Blender'];
 
   const filteredProjects = selectedCategory === 'All' 
@@ -139,7 +140,7 @@ const Portfolio = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold text-white">My Work</h1>
-        <div className="flex rounded-md bg-gray-800 p-1">
+        <div className="flex rounded-md bg-gray-800 p-1 gap-1">
           <button
             onClick={() => setActiveTab('projects')}
             className={`px-4 py-2 rounded-md text-sm transition-colors ${
@@ -159,6 +160,16 @@ const Portfolio = () => {
             }`}
           >
             YouTube
+          </button>
+          <button
+            onClick={() => setActiveTab('3d')}
+            className={`px-4 py-2 rounded-md text-sm transition-colors ${
+              activeTab === '3d' 
+                ? 'bg-purple-600 text-white' 
+                : 'text-gray-300 hover:bg-gray-700'
+            }`}
+          >
+            3D Showroom
           </button>
         </div>
       </div>
@@ -247,10 +258,14 @@ const Portfolio = () => {
             ))}
           </div>
         </div>
-      ) : (
-        <div className="bg-gray-800 rounded-xl p-8 text-center">
-          <div className="max-w-2xl mx-auto">
-            <div className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+      ) : activeTab === 'youtube' ? (
+        <div className="relative overflow-hidden bg-gradient-to-br from-red-500/10 via-card/40 to-primary/10 backdrop-blur-xl border border-red-500/20 rounded-3xl p-12 text-center shadow-2xl shadow-red-950/20 group">
+          {/* Decorative glowing gradient blobs */}
+          <div className="absolute -top-24 -left-24 w-48 h-48 bg-red-500/25 rounded-full blur-3xl pointer-events-none group-hover:bg-red-500/35 transition-all duration-700"></div>
+          <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-primary/15 rounded-full blur-3xl pointer-events-none group-hover:bg-primary/25 transition-all duration-700"></div>
+          
+          <div className="max-w-2xl mx-auto relative z-10">
+            <div className="w-20 h-20 bg-gradient-to-tr from-red-500 to-rose-600 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg shadow-red-500/30 hover:scale-110 hover:rotate-3 transition-all duration-300">
               <svg 
                 className="w-10 h-10 text-white" 
                 fill="currentColor" 
@@ -260,57 +275,27 @@ const Portfolio = () => {
                 <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
               </svg>
             </div>
-            <h2 className="text-2xl font-bold text-white mb-4">Check out my YouTube Channel</h2>
-            <p className="text-gray-300 mb-6">I create tutorials and showcase my game development projects on my YouTube channel. Subscribe to stay updated with my latest work!</p>
+            <h2 className="text-3xl font-extrabold text-white mb-4 tracking-tight bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent">
+              Check out my YouTube Channel
+            </h2>
+            <p className="text-gray-300/90 text-base leading-relaxed mb-8 max-w-lg mx-auto">
+              I upload gameplay videos of games like Fortnite, PUBG, GTA Vice City, Meccha-Chameleon, Mario Gameplay, and Uncharted on my YouTube channel. Subscribe to stay updated with my latest gaming content!
+            </p>
             <a 
               href="https://www.youtube.com/@SimpleEasy8557" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-colors duration-200"
+              className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-semibold rounded-2xl transition-all duration-300 shadow-lg shadow-red-600/30 hover:shadow-red-500/40 hover:-translate-y-0.5"
             >
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
               </svg>
               Visit My Channel
             </a>
-            
-            <div className="mt-10">
-              <h3 className="text-xl font-semibold text-white mb-6">Featured Videos</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {projects
-                  .filter(project => project.youtubeId)
-                  .map(project => (
-                    <a
-                      key={project.id}
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block group"
-                    >
-                      <div className="relative overflow-hidden rounded-lg bg-gray-700 aspect-video mb-3">
-                        <img 
-                          src={project.image} 
-                          alt={project.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
-                            <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8 5v14l11-7z"/>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <h4 className="text-white font-medium group-hover:text-blue-400 transition-colors">
-                        {project.title}
-                      </h4>
-                      <p className="text-sm text-gray-400">{project.category}</p>
-                    </a>
-                  ))}
-              </div>
-            </div>
           </div>
         </div>
+      ) : (
+        <ModelShowroom3D />
       )}
     </div>
   );

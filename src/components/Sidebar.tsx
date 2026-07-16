@@ -71,7 +71,7 @@ export function Sidebar() {
               </div>
               <div className="flex-1">
                 <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-1">Location</p>
-                <p className="text-sm text-foreground font-medium">Pune, Maharashtra, India</p>
+                <p className="text-sm text-foreground font-medium">Satara, Maharashtra, India</p>
               </div>
             </div>
           </div>

@@ -22,6 +22,15 @@ export default function Resume() {
 
   const experience = [
     {
+      position: "Game Developer Intern at Idea Usher",
+      period: "Jan 2026 – Jun 2026",
+      description: `• Diagnosed and resolved critical multiplayer synchronization bugs using PUN (Photon Unity Networking), leveraging RPCs and OnPhotonSerializeView to ensure stable real-time gameplay across clients in the Metaverse environment.
+• Integrated and retargeted character animations sourced from Mixamo (Adobe) into Unity, including blend-tree setup and in-game triggering via the Animator Controller.
+• Fixed Multiplayer Animation Synchronization issues — avatar animations (movement, idle, actions) are now correctly replicated across the network for all connected players.
+• Managed version control using Git / GitHub with a structured multi-branch workflow maintaining separate development, testing, staging, and production branches, following a standard CI/CD release pipeline.
+• Performed 3D asset optimisation in Blender — removed unnecessary geometry, cleaned up meshes, and repositioned scene objects to reduce draw calls and improve runtime performance.`
+    },
+    {
       position: "Intern At Edunet Foundation",
       period: "Jan-2025 – Feb-2025",
       description: `• Worked on AI-based image generation using ComfyUI and Stable Diffusion, creating custom workflows for text-to-image tasks.\n• Gained hands-on experience in prompt engineering, image enhancement, and visual content generation.`
@@ -82,7 +91,7 @@ export default function Resume() {
                   {item.period}
                 </span>
                 <h3 className="font-semibold text-foreground mb-3">{item.position}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed whitespace-pre-line">{item.description}</p>
               </div>
             </div>
           ))}
