@@ -1,9 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Send, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { Send, Loader2, Zap, Radio } from "lucide-react";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -15,131 +12,168 @@ export default function Contact() {
     e.preventDefault();
 
     if (!name || !email || !message) {
-      toast.error("Please fill in all fields.");
+      toast.error("HOLD IT! Please fill in all fields.");
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      // Using Web3Forms for direct email delivery to saadnadaf1210@gmail.com
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
-          "Content-Type": "application/body",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          // This is a free public key mapped to saadnadaf1210@gmail.com
-          // Web3Forms automatically forwards form submissions to your email
           access_key: "51c9d646-cd9d-4c33-a3d8-e390c5fa6359",
           name,
           email,
           message,
-          subject: `New Portfolio Message from ${name}`,
+          subject: `[COMIC DISPATCH] New Portfolio Message from ${name}`,
         }),
       });
 
       const data = await response.json();
 
       if (data.success) {
-        toast.success("Message sent successfully!");
+        toast.success("BAM! Transmission sent successfully!");
         setName("");
         setEmail("");
         setMessage("");
       } else {
-        toast.error("Something went wrong. Please try again.");
+        toast.error("Transmission glitch! Please try again.");
       }
     } catch (error) {
-      toast.error("Failed to send message. Please check your connection.");
+      toast.error("Connection severed! Check your network signal.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="p-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-foreground mb-6">Contact</h1>
-      <div className="w-12 h-1 bg-gradient-primary rounded mb-8"></div>
-
-      {/* Map Section */}
-      <section className="mb-12">
-        <div className="bg-card border border-border rounded-lg overflow-hidden shadow-card h-80 relative">
-          <iframe
-            title="Satara, Maharashtra, India Map"
-            src="https://www.google.com/maps?q=Satara,+Maharashtra,+India&output=embed"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen={true}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
-          <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded px-3 py-2 z-10">
-            <h3 className="text-lg font-semibold text-foreground mb-1">Satara</h3>
-            <p className="text-muted-foreground">Maharashtra, India</p>
-          </div>
+    <div className="p-4 sm:p-6 lg:p-8 max-w-5xl space-y-8 sm:space-y-10">
+      {/* Page Title */}
+      <div className="relative inline-block max-w-full">
+        <div className="bg-[#39FF14] text-black font-bangers text-3xl sm:text-4xl md:text-5xl px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl border-3 sm:border-4 border-black shadow-[4px_4px_0px_#000000] sm:shadow-[6px_6px_0px_#000000] rotate-[-1deg] flex items-center gap-2 sm:gap-3">
+          <Radio className="w-6 h-6 sm:w-8 sm:h-8 text-black shrink-0" />
+          <span className="truncate">TRANSMISSION HUB</span>
         </div>
-      </section>
+        <div className="absolute -bottom-3 right-2 sm:right-4 bg-[#FFE81F] text-black font-bangers text-[10px] sm:text-xs px-2.5 py-0.5 rounded-md border-2 border-black shadow-[2px_2px_0px_#000] rotate-[3deg]">
+          DISPATCH LINE
+        </div>
+      </div>
 
-      {/* Contact Form */}
-      <section>
-        <h2 className="text-2xl font-bold text-foreground mb-6">Contact Form</h2>
-        
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8">
+        {/* Left Comic Card: Direct Message Form */}
+        <section className="lg:col-span-3 bg-[#181c26] border-3 sm:border-4 border-black rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-[5px_5px_0px_#000000] sm:shadow-[8px_8px_0px_#000000] relative">
+          <div className="absolute -top-3.5 left-4 sm:left-6 bg-[#FFE81F] text-black font-bangers text-xs sm:text-sm px-3 sm:px-4 py-0.5 sm:py-1 rounded-md border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-1.5">
+            <Zap className="w-3.5 h-3.5 fill-black" /> SEND HERO SIGNAL
+          </div>
+
+          <p className="text-gray-300 font-comic text-xs sm:text-sm mt-2 mb-5">
+            Looking for a game dev, mobile engineer, or creative coder? Fire away your signal below and I will respond pronto!
+          </p>
+
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
             <div>
-              <Input 
-                placeholder="Full name"
-                className="bg-card border-border"
+              <label className="block font-bangers text-xs sm:text-sm text-[#FFE81F] tracking-wider uppercase mb-1">
+                CODENAME / SENDER NAME
+              </label>
+              <input
+                type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                required
+                placeholder="Agent / Recruiter / Fellow Dev"
+                className="w-full bg-[#111319] text-white font-comic text-sm sm:text-base px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border-2 sm:border-3 border-black shadow-[2px_2px_0px_#000] focus:outline-none focus:border-[#FFE81F] transition-all placeholder:text-gray-500"
               />
             </div>
+
             <div>
-              <Input 
+              <label className="block font-bangers text-xs sm:text-sm text-[#00F0FF] tracking-wider uppercase mb-1">
+                DISPATCH ADDRESS (EMAIL)
+              </label>
+              <input
                 type="email"
-                placeholder="Email address"
-                className="bg-card border-border"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
+                placeholder="your.email@hq.com"
+                className="w-full bg-[#111319] text-white font-comic text-sm sm:text-base px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border-2 sm:border-3 border-black shadow-[2px_2px_0px_#000] focus:outline-none focus:border-[#00F0FF] transition-all placeholder:text-gray-500"
               />
             </div>
-          </div>
-          
-          <div>
-            <Textarea 
-              placeholder="Your message"
-              rows={6}
-              className="bg-card border-border resize-none"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              required
-            />
-          </div>
-          
-          <div className="flex justify-end">
-            <Button 
-              type="submit" 
+
+            <div>
+              <label className="block font-bangers text-xs sm:text-sm text-[#FF2A2A] tracking-wider uppercase mb-1">
+                MISSION BRIEF (MESSAGE)
+              </label>
+              <textarea
+                rows={4}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Tell me about your project, game concept, or collaboration..."
+                className="w-full bg-[#111319] text-white font-comic text-sm sm:text-base p-3 sm:p-4 rounded-xl border-2 sm:border-3 border-black shadow-[2px_2px_0px_#000] focus:outline-none focus:border-[#FF2A2A] transition-all placeholder:text-gray-500 resize-none"
+              />
+            </div>
+
+            <button
+              type="submit"
               disabled={isSubmitting}
-              className="bg-gradient-primary hover:opacity-90 text-primary-foreground px-8"
+              className="w-full py-3 sm:py-4 bg-[#FFE81F] hover:bg-[#ffd700] text-black font-bangers text-xl sm:text-2xl tracking-wider uppercase rounded-xl sm:rounded-2xl border-3 sm:border-4 border-black shadow-[4px_4px_0px_#000000] sm:shadow-[6px_6px_0px_#000000] hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 sm:gap-3 disabled:opacity-60"
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Sending...
+                  <Loader2 className="w-5 h-5 animate-spin text-black" />
+                  <span>TRANSMITTING...</span>
                 </>
               ) : (
                 <>
-                  <Send className="w-4 h-4 mr-2" />
-                  Send Message
+                  <Send className="w-5 h-5 text-black" />
+                  <span>FIRE TRANSMISSION! (SEND)</span>
                 </>
               )}
-            </Button>
+            </button>
+          </form>
+        </section>
+
+        {/* Right Comic Card: HQ Location & Intel */}
+        <section className="lg:col-span-2 space-y-4 sm:space-y-6">
+          <div className="bg-[#181c26] border-3 sm:border-4 border-black rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-[5px_5px_0px_#000000] sm:shadow-[8px_8px_0px_#000000] relative">
+            <div className="bg-[#00F0FF] text-black font-bangers text-xs px-2.5 py-0.5 rounded border border-black shadow-[1px_1px_0px_#000] inline-block mb-2">
+              BASE RADAR
+            </div>
+            
+            <h3 className="font-bangers text-xl sm:text-2xl text-[#FFE81F] tracking-wide mb-1">
+              SATARA, MAHARASHTRA
+            </h3>
+            <p className="text-xs text-gray-300 font-comic mb-3">
+              Latitude: 17.6805° N, Longitude: 74.0183° E
+            </p>
+
+            <div className="h-44 sm:h-52 rounded-xl sm:rounded-2xl overflow-hidden border-2 sm:border-3 border-black shadow-[3px_3px_0px_#000]">
+              <iframe
+                title="Satara, Maharashtra, India Map"
+                src="https://www.google.com/maps?q=Satara,+Maharashtra,+India&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+              />
+            </div>
           </div>
-        </form>
-      </section>
+
+          <div className="bg-[#181c26] border-3 sm:border-4 border-black rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-[5px_5px_0px_#000000] sm:shadow-[8px_8px_0px_#000000] text-center">
+            <span className="font-bangers text-xs sm:text-sm text-[#39FF14] tracking-wider block mb-1">
+              QUICK DIAL HOTLINE
+            </span>
+            <p className="font-bangers text-xl sm:text-2xl text-white tracking-wide">
+              +91 9325596618
+            </p>
+            <p className="font-comic text-xs text-gray-400 mt-1">
+              Available for game contracts & freelance quests!
+            </p>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

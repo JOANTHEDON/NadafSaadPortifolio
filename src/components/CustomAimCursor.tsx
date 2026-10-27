@@ -17,7 +17,7 @@ export default function CustomAimCursor() {
     `;
     document.head.appendChild(styleElement);
 
-    // 2. Track mouse position and update DOM positions directly (zero latency)
+    // 2. Track mouse position
     const handleMouseMove = (e: MouseEvent) => {
       const x = e.clientX;
       const y = e.clientY;
@@ -52,7 +52,6 @@ export default function CustomAimCursor() {
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mouseenter', handleMouseEnter);
 
-    // 3. Handle hover checks on interactive elements
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (!target) return;
@@ -84,32 +83,33 @@ export default function CustomAimCursor() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[10000] overflow-hidden select-none">
-      {/* Outer Aim Ring */}
+      {/* Outer Comic Reticle Ring */}
       <div
         ref={ringRef}
-        className={`absolute rounded-full border border-primary transition-all duration-75 flex items-center justify-center ${
+        className={`absolute rounded-full border-2 border-black transition-all duration-75 flex items-center justify-center ${
           isHovered 
-            ? 'w-10 h-10 border-purple-500 bg-purple-500/10 scale-110' 
-            : 'w-7 h-7 border-primary/70 bg-transparent'
+            ? 'w-10 h-10 bg-[#FF2A2A]/40 scale-125 border-[#FF2A2A]' 
+            : 'w-7 h-7 bg-[#FFE81F]/20 border-black'
         }`}
         style={{
           transform: 'translate3d(-100px, -100px, 0) translate(-50%, -50%)',
           willChange: 'transform',
           opacity: 0,
+          boxShadow: isHovered ? '2px 2px 0px #000' : '1px 1px 0px #000',
         }}
       >
-        {/* Reticle lines inside outer ring (crosshair) */}
-        <div className={`absolute w-1.5 h-[1px] left-0 bg-current opacity-60 ${isHovered ? 'text-purple-400' : 'text-primary'}`} />
-        <div className={`absolute w-1.5 h-[1px] right-0 bg-current opacity-60 ${isHovered ? 'text-purple-400' : 'text-primary'}`} />
-        <div className={`absolute h-1.5 w-[1px] top-0 bg-current opacity-60 ${isHovered ? 'text-purple-400' : 'text-primary'}`} />
-        <div className={`absolute h-1.5 w-[1px] bottom-0 bg-current opacity-60 ${isHovered ? 'text-purple-400' : 'text-primary'}`} />
+        {/* Reticle crosshair points */}
+        <div className={`absolute w-2 h-0.5 left-0 ${isHovered ? 'bg-[#FF2A2A]' : 'bg-[#FFE81F]'}`} />
+        <div className={`absolute w-2 h-0.5 right-0 ${isHovered ? 'bg-[#FF2A2A]' : 'bg-[#FFE81F]'}`} />
+        <div className={`absolute h-2 w-0.5 top-0 ${isHovered ? 'bg-[#FF2A2A]' : 'bg-[#FFE81F]'}`} />
+        <div className={`absolute h-2 w-0.5 bottom-0 ${isHovered ? 'bg-[#FF2A2A]' : 'bg-[#FFE81F]'}`} />
       </div>
 
-      {/* Center Aim Dot */}
+      {/* Center Comic Crosshair Dot */}
       <div
         ref={dotRef}
-        className={`absolute w-1.5 h-1.5 rounded-full transition-colors duration-200 ${
-          isHovered ? 'bg-purple-400 shadow-glow' : 'bg-primary shadow-glow'
+        className={`absolute w-2 h-2 rounded-full border border-black transition-colors duration-150 ${
+          isHovered ? 'bg-[#FF2A2A]' : 'bg-[#FFE81F]'
         }`}
         style={{
           transform: 'translate3d(-100px, -100px, 0) translate(-50%, -50%)',

@@ -21,14 +21,17 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <GlowCursorTrail />
-      <CustomAimCursor />
+      {/* Cursors only enabled on non-touch devices with fine pointers */}
+      <div className="hidden md:block">
+        <GlowCursorTrail />
+        <CustomAimCursor />
+      </div>
       <BrowserRouter>
-        <div className="min-h-screen bg-background text-foreground flex">
+        <div className="min-h-screen bg-background text-foreground flex flex-col lg:flex-row overflow-x-hidden">
           <Sidebar />
-          <div className="flex-1 flex flex-col relative">
+          <div className="flex-1 flex flex-col relative min-w-0">
             <Navigation />
-            <main className="flex-1 relative -mt-6">{/* Overlap navigation slightly */}
+            <main className="flex-1 relative pb-12">
               <Routes>
                 <Route path="/" element={<About />} />
                 <Route path="/resume" element={<Resume />} />

@@ -2,66 +2,120 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    /* Portfolio Dark Theme Colors */
-    --background: 225 15% 11%;
-    --foreground: 0 0% 88%;
+    /* Comic Dark Theme */
+    --background: 224 25% 9%;
+    --foreground: 45 100% 98%;
 
-    --card: 225 15% 14%;
-    --card-foreground: 0 0% 88%;
+    --card: 224 24% 13%;
+    --card-foreground: 45 100% 98%;
 
-    --popover: 225 15% 14%;
-    --popover-foreground: 0 0% 88%;
+    --popover: 224 24% 13%;
+    --popover-foreground: 45 100% 98%;
 
-    --primary: 45 100% 60%;
-    --primary-foreground: 225 15% 11%;
+    --primary: 48 100% 50%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 225 15% 16%;
-    --secondary-foreground: 0 0% 75%;
+    --secondary: 225 20% 18%;
+    --secondary-foreground: 45 20% 88%;
 
-    --muted: 225 15% 16%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 225 18% 16%;
+    --muted-foreground: 220 15% 70%;
 
-    --accent: 45 100% 60%;
-    --accent-foreground: 225 15% 11%;
+    --accent: 358 100% 62%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 90% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 225 15% 20%;
-    --input: 225 15% 16%;
-    --ring: 45 100% 60%;
+    --border: 0 0% 0%;
+    --input: 225 20% 18%;
+    --ring: 48 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    /* Gradient definitions */
-    --gradient-primary: linear-gradient(135deg, hsl(45 100% 60%), hsl(35 100% 55%));
-    --gradient-card: linear-gradient(145deg, hsl(225 15% 14%), hsl(225 15% 16%));
+    --gradient-primary: linear-gradient(135deg, #FFE81F, #FF8C00);
+    --gradient-comic: linear-gradient(135deg, #FF2A2A, #FF7B00);
+    --gradient-card: linear-gradient(145deg, #181c25, #12151c);
     
-    /* Shadows */
-    --shadow-card: 0 4px 15px -3px hsl(225 15% 8% / 0.4);
-    --shadow-glow: 0 0 20px hsl(45 100% 60% / 0.3);
-
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-card: 4px 4px 0px #000000;
+    --shadow-glow: 0 0 25px rgba(255, 232, 31, 0.35);
   }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: #000000;
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Comic Neue', cursive, sans-serif;
+    /* Halftone dot pattern background */
+    background-image: radial-gradient(rgba(255, 232, 31, 0.08) 1.5px, transparent 1.5px),
+                      radial-gradient(rgba(0, 240, 255, 0.04) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    background-position: 0 0, 12px 12px;
   }
 
-  html {
-    color-scheme: dark;
+  h1, h2, h3, h4, .comic-font {
+    font-family: 'Bangers', cursive, sans-serif;
+    letter-spacing: 0.05em;
   }
+}
+
+/* Custom Comic utilities */
+.comic-border {
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.comic-border-lg {
+  border: 4px solid #000000;
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.comic-border-hover {
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.comic-border-hover:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0px #000000;
+}
+
+.comic-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+}
+
+/* Comic Speech Bubble with Tail */
+.comic-bubble {
+  position: relative;
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  border-radius: 18px;
+}
+
+.comic-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 24px;
+  border-width: 14px 14px 0 0;
+  border-style: solid;
+  border-color: #000000 transparent transparent transparent;
+}
+
+/* Halftone overlay pattern */
+.halftone-dots {
+  background-image: radial-gradient(currentColor 1.5px, transparent 1.5px);
+  background-size: 8px 8px;
 }
