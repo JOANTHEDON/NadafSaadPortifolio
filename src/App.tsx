@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Sidebar } from "./components/Sidebar";
 import { Navigation } from "./components/Navigation";
+import { ScrollExperience } from "./components/ScrollExperience";
 import GlowCursorTrail from "./components/GlowCursorTrail";
 import CustomAimCursor from "./components/CustomAimCursor";
 import About from "./pages/About";
@@ -27,7 +28,8 @@ const App = () => (
         <CustomAimCursor />
       </div>
       <BrowserRouter>
-        <div className="min-h-screen bg-background text-foreground flex flex-col lg:flex-row overflow-x-hidden">
+        <ScrollExperience />
+        <div className="min-h-screen text-foreground flex flex-col lg:flex-row overflow-x-hidden">
           <Sidebar />
           <div className="flex-1 flex flex-col relative min-w-0">
             <Navigation />

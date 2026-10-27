@@ -27,19 +27,26 @@ export function Sidebar() {
         {/* Top Header layout for mobile & desktop */}
         <div className="flex flex-col sm:flex-row lg:flex-col items-center gap-4 sm:gap-6 lg:gap-0 mt-3 sm:mt-2">
           {/* Profile Avatar inside a Comic Frame */}
-          <div className="relative mx-auto w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 shrink-0">
-            <div className="w-full h-full rounded-2xl bg-gradient-to-tr from-[#FFE81F] via-[#FF7B00] to-[#FF2A2A] p-1.5 border-4 border-black shadow-[4px_4px_0px_#000000] overflow-hidden transform hover:scale-105 transition-transform duration-300">
+          <div className="relative mx-auto w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 shrink-0 group">
+            <div className="w-full h-full rounded-2xl bg-gradient-to-tr from-[#FFE81F] via-[#FF7B00] to-[#FF2A2A] p-1.5 border-4 border-black shadow-[4px_4px_0px_#000000] overflow-hidden transform group-hover:scale-105 transition-transform duration-300">
               <div className="w-full h-full rounded-xl bg-[#111319] overflow-hidden flex items-center justify-center relative">
                 <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#FFE81F_2px,transparent_2px)] [background-size:10px_10px]" />
+                {/* Default recent image from public folder */}
+                <img 
+                  src="/Profile.jpeg" 
+                  alt="Nadaf Saad" 
+                  className="w-full h-full object-cover object-top relative z-10 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+                />
+                {/* Current profile image shown on hover */}
                 <img 
                   src={profilePhoto} 
-                  alt="Nadaf Saad" 
-                  className="w-full h-full object-cover object-top relative z-10"
+                  alt="Nadaf Saad Hover" 
+                  className="w-full h-full object-cover object-top absolute inset-0 z-10 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
                 />
               </div>
             </div>
             {/* Level tag */}
-            <div className="absolute -bottom-2 right-1 sm:right-2 bg-[#00F0FF] text-black font-bangers text-xs px-2 py-0.5 rounded border-2 border-black shadow-[2px_2px_0px_#000]">
+            <div className="absolute -bottom-2 right-1 sm:right-2 bg-[#00F0FF] text-black font-bangers text-xs px-2 py-0.5 rounded border-2 border-black shadow-[2px_2px_0px_#000] z-20">
               LVL. 99
             </div>
           </div>
