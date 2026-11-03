@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ModelShowroom3D from '@/components/ModelShowroom3D';
-import { Gamepad2, Play, Box, ExternalLink, Zap } from 'lucide-react';
+import { Gamepad2, Play, Box, ExternalLink, Zap, Sparkles } from 'lucide-react';
 
 // Import project images
 import fpsGameImg from '@/assets/fps-game.jpg';
@@ -14,6 +14,7 @@ import navigationUIImg from '@/assets/navigation-ui.jpg';
 import basketballImg from '@/assets/basketball-scene.jpg';
 import toonShaderImg from '@/assets/toon-shader.jpg';
 import greasePencilImg from '@/assets/grease-pencil-cake.jpg';
+import toyFactoryImg from '@/assets/toy-factory.jpg';
 
 const projects = [
   {
@@ -155,7 +156,7 @@ export default function Portfolio() {
         <div className="relative inline-block max-w-full">
           <div className="bg-[#FFE81F] text-black font-bangers text-3xl sm:text-4xl md:text-5xl px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl border-3 sm:border-4 border-black shadow-[4px_4px_0px_#000000] sm:shadow-[6px_6px_0px_#000000] rotate-[-1deg] flex items-center gap-2 sm:gap-3">
             <Zap className="w-6 h-6 sm:w-8 sm:h-8 fill-black shrink-0" />
-            <span className="truncate">MISSION ARCHIVES</span>
+            <span className="truncate">PROJECTS</span>
           </div>
           <div className="absolute -bottom-3 right-2 sm:right-4 bg-[#FF2A2A] text-white font-bangers text-[10px] sm:text-xs px-2.5 py-0.5 rounded-md border-2 border-black shadow-[2px_2px_0px_#000] rotate-[3deg]">
             ACTION-PACKED!
@@ -197,6 +198,93 @@ export default function Portfolio() {
         </div>
       </div>
       
+      {/* Featured Playable Spotlight: Toy Factory */}
+      <div className="relative bg-[#181c26] border-3 sm:border-4 border-black rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-[6px_6px_0px_#000000] overflow-hidden">
+        {/* Comic Ribbon */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <div className="flex items-center gap-2">
+            <span className="bg-[#FFE81F] text-black font-bangers text-xs sm:text-sm px-3 py-1 rounded border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-1.5 rotate-[-2deg]">
+              <Sparkles className="w-3.5 h-3.5 fill-black" /> FEATURED PLAYABLE GAME
+            </span>
+            <span className="bg-[#39FF14] text-black font-bangers text-xs sm:text-sm px-2.5 py-1 rounded border-2 border-black shadow-[2px_2px_0px_#000]">
+              UNITY PLAY
+            </span>
+          </div>
+
+          <span className="font-bangers text-xs text-gray-400 tracking-wider">
+            WEBGL // INSTANT PLAY
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          {/* Thumbnail Preview with Comic Frame */}
+          <div className="lg:col-span-7 relative group">
+            <a
+              href="https://play.unity.com/en/games/515c483a-970a-4dcf-89e7-adb89ae82c9d/toyfactory"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block relative rounded-2xl overflow-hidden border-3 sm:border-4 border-black shadow-[4px_4px_0px_#000000] group-hover:shadow-[8px_8px_0px_#000000] transition-all"
+            >
+              <img
+                src={toyFactoryImg}
+                alt="ToyFactory by Saad Nadaf"
+                className="w-full h-56 sm:h-72 lg:h-80 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-50 group-hover:opacity-30 transition-opacity" />
+              
+              {/* Play Badge Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="bg-[#FF2A2A] text-white font-bangers text-sm sm:text-base px-5 py-2.5 rounded-xl border-3 border-black shadow-[4px_4px_0px_#000] flex items-center gap-2 group-hover:scale-110 transition-transform">
+                  <Play className="w-5 h-5 fill-white" /> PLAY NOW ON UNITY
+                </div>
+              </div>
+
+              {/* SFX Corner Callout */}
+              <div className="absolute top-3 right-3 bg-[#FFE81F] text-black font-bangers text-xs px-2.5 py-0.5 rounded border-2 border-black shadow-[2px_2px_0px_#000] rotate-3">
+                BUILD & PLAY! 🧸⚙️
+              </div>
+            </a>
+          </div>
+
+          {/* Details Column */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
+            <div>
+              <div className="bg-[#00F0FF] text-black font-bangers text-xs px-2.5 py-0.5 rounded border border-black shadow-[1px_1px_0px_#000] inline-block mb-2">
+                UNITY 3D // CASUAL / SIMULATION
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bangers text-[#FFE81F] tracking-wide mb-2 leading-none">
+                TOYFACTORY
+              </h2>
+              <p className="text-gray-300 font-comic text-xs sm:text-sm leading-relaxed mb-4">
+                Step onto the bustling assembly line! An interactive factory simulator crafted in Unity where players assemble, test, and package delightful toys with physics-driven mechanical conveyors and responsive controls.
+              </p>
+
+              <div className="flex flex-wrap gap-1.5 mb-5">
+                {['Unity 3D', 'C# Scripting', 'Physics Conveyor', 'WebGL', 'Unity Play'].map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs font-bangers bg-[#202534] text-[#00F0FF] px-2.5 py-1 rounded-lg border border-black"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <a
+              href="https://play.unity.com/en/games/515c483a-970a-4dcf-89e7-adb89ae82c9d/toyfactory"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#FFE81F] hover:bg-[#fff055] text-black font-bangers text-base sm:text-lg tracking-wider uppercase rounded-xl border-3 border-black shadow-[4px_4px_0px_#000000] hover:-translate-y-0.5 transition-all text-center"
+            >
+              <Gamepad2 className="w-5 h-5" />
+              <span>PLAY TOYFACTORY ONLINE</span>
+              <ExternalLink className="w-4 h-4 ml-1" />
+            </a>
+          </div>
+        </div>
+      </div>
+
       {activeTab === 'projects' ? (
         <div className="space-y-6 sm:space-y-8">
           {/* Category Filter Chips */}
